@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<html lang="zh-hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="Git 是一个版本控制工具，它有点像时间机器，可以让你回到从前。使用 Git 管理你的项目，对项目做出修改以后，提交一下，写一条信息，说明一下为啥做出这样的修改。在未来你可以恢复到之前提交的那个点上。不管你是设计师还是开发者，都应该学会使用 Git，先从这个简单的操作手册开始吧，你将学会：
+
+	安装 Git
+	初始化 Git 仓库
+	提交修改
+	查看状态
+	还原
+	创建分支
+	合并分支
+	在 github 上管理项目" />
+<link rel="shortcut icon" href="http://ninghao.net/sites/all/themes/ninghao/favicon.ico" type="image/vnd.microsoft.icon" />
+<meta about="/blog/1379" property="sioc:num_replies" content="8" datatype="xsd:integer" />
+<meta name="generator" content="Drupal 7 (http://drupal.org)" />
+<link rel="canonical" href="/blog/1379" />
+<link rel="shortlink" href="/node/1379" />
+<meta content="Git 入门手册" about="/blog/1379" property="dc:title" />
+  <title>Git 入门手册 | 宁皓网</title>
+  <link type="text/css" rel="stylesheet" href="http://ninghao.net/files/css/css_OtXte3p3L4N5tINHWBnVXOdKndS-0E7i7kmwRLF-eG0.css" media="all" />
+<link type="text/css" rel="stylesheet" href="http://ninghao.net/files/css/css_2Jdp4oe0PE0jbUbNo79ZliVwjcmoHadtNxamsngcBXI.css" media="print" />
+
+<!--[if IE]>
+<link type="text/css" rel="stylesheet" href="http://ninghao.net/files/css/css_v2sBpTM4cq-2KuNRIDl-QmiK7rt5h0oTge4kQlTIXQA.css" media="all" />
+<![endif]-->
+
+<!--[if lte IE 6]>
+<link type="text/css" rel="stylesheet" href="http://ninghao.net/files/css/css_Y1UdoWOSph5sVc2TaHSL4PYxzCDozWTCfVlqd0rYxRY.css" media="all" />
+<![endif]-->
+  <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+window.google_analytics_uacct = "UA-27148069-1";
+//--><!]]>
+</script>
+<script type="text/javascript" src="http://ninghao.net/files/js/js_0gj6QcpfRH2jzTbCQqf7kEkm4MXY0UA_sRhwPc8jC1o.js"></script>
+<script type="text/javascript" src="http://ninghao.net/files/js/js_3bIR_nLyM0mgSRUUii4DvHpb4kq9GWBwZaVnsrAsCQU.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-27148069-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+<script type="text/javascript" src="http://ninghao.net/files/js/js_02PfYLufOU88s3QwQuvWJechTxpFxSj2pULq4TmzgOk.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":{"theme":"ninghao","theme_token":"3cJLMk0SV_1wzTah1sJ6oixqDKHNb71T6r_SfEBiNlQ","js":{"0":1,"sites\/all\/modules\/jquery_update\/replace\/jquery\/1.7\/jquery.min.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"public:\/\/languages\/zh-hans_SSyY18jidsQTT8HgV03PQxc_1TspaTatAW4rm-bdKvw.js":1,"sites\/all\/libraries\/colorbox\/colorbox\/jquery.colorbox-min.js":1,"sites\/all\/modules\/colorbox\/js\/colorbox.js":1,"sites\/all\/modules\/colorbox\/styles\/default\/colorbox_default_style.js":1,"sites\/all\/modules\/colorbox\/js\/colorbox_load.js":1,"sites\/all\/modules\/colorbox\/js\/colorbox_login.js":1,"sites\/all\/modules\/google_analytics\/googleanalytics.js":1,"1":1,"sites\/all\/themes\/ninghao\/js\/prettify.js":1,"sites\/all\/themes\/ninghao\/js\/bootstrap.min.js":1,"sites\/all\/themes\/ninghao\/js\/jquery.anystretch.min.js":1},"css":{"modules\/system\/system.base.css":1,"modules\/system\/system.menus.css":1,"modules\/system\/system.messages.css":1,"modules\/system\/system.theme.css":1,"sites\/all\/modules\/colorbox\/styles\/default\/colorbox_default_style.css":1,"sites\/all\/modules\/ctools\/css\/ctools.css":1,"sites\/all\/themes\/ninghao\/css\/system.base.css":1,"sites\/all\/themes\/ninghao\/css\/system.menus.css":1,"sites\/all\/themes\/ninghao\/css\/system.messages.css":1,"sites\/all\/themes\/ninghao\/css\/system.theme.css":1,"sites\/all\/themes\/ninghao\/css\/ckeditor.css":1,"sites\/all\/themes\/ninghao\/css\/colorbox_default_style.css":1,"sites\/all\/themes\/ninghao\/css\/ctools.css":1,"sites\/all\/themes\/ninghao\/css\/page-backgrounds.css":1,"sites\/all\/themes\/ninghao\/css\/pages.css":1,"sites\/all\/themes\/ninghao\/css\/css3.css":1,"sites\/all\/themes\/ninghao\/css\/bootstrap.min.css":1,"sites\/all\/themes\/ninghao\/css\/bootstrap-responsive.min.css":1,"sites\/all\/themes\/ninghao\/css\/bootstrap-reset.css":1,"sites\/all\/themes\/ninghao\/css\/ninghao.css":1,"sites\/all\/themes\/ninghao\/css\/responsive.css":1,"sites\/all\/themes\/ninghao\/css\/print.css":1,"sites\/all\/themes\/ninghao\/css\/ie.css":1,"sites\/all\/themes\/ninghao\/css\/ie6.css":1}},"colorbox":{"transition":"none","speed":"100","opacity":"0.35","slideshow":false,"slideshowAuto":true,"slideshowSpeed":"2500","slideshowStart":"start slideshow","slideshowStop":"stop slideshow","current":"{current} \/ {total}","previous":"\u00ab \u5f80\u524d","next":"\u5f80\u540e \u00bb","close":"\u5173\u95ed","overlayClose":true,"maxWidth":"100%","maxHeight":"100%","initialWidth":"300","initialHeight":"100","fixed":true,"__drupal_alter_by_ref":["default"]},"googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip"}});
+//--><!]]>
+</script>
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/files/asset/apple-touch-icon/144x144.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/files/asset/apple-touch-icon/114x114.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/files/asset/apple-touch-icon/72x72.png">
+  <link rel="apple-touch-icon-precomposed" href="/files/asset/apple-touch-icon/57x57.png">
+</head>
+<body class="html not-front not-logged-in no-sidebars page-node page-node- page-node-1379 node-type-blog section-blog" >
+    <header id="header">
+  <div class="header-inner">
+    <div class="container">
+      <nav class="navbar navbar-inverse"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+                <a class="brand span3" href="/" title="首页" rel="home" id="logo"><img src="http://ninghao.net/sites/all/themes/ninghao/logo.png" alt="首页" /></a>
+                <h2 class="element-invisible">主菜单</h2><ul id="main-menu" class="nav"><li class="menu-578 first"><a href="/course">课程</a></li>
+<li class="menu-1902 active last"><a href="/blog" class="active">博客</a></li>
+</ul>        <div class="nav-collapse">
+                    <ul id="secondary-menu" class="nav pull-right">
+            <li> <a href="/user/login" title="login" class="login colorbox-load">登录</a> </li>
+            <li> <a href="/user/register" title="register" class="login">注册</a></li>
+            <li class="divider-vertical"></li>
+            <li> <a class="signup btn btn-primary btn-mini" href="/signup" title="订阅课程" >订阅课程</a></li>
+          </ul>
+                            </div>
+      </nav>
+    </div>
+  </div>
+</header>
+<div id="mainbody">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <div class="maincontent">                    <h1 class="page-header">Git 入门手册</h1>
+                                            <section class=" first clearfix">
+          <div id="node-1379" class="node node-blog view-mode-full clearfix" about="/blog/1379" typeof="sioc:Item foaf:Document">        
+  <div class="node-content">
+                <p>Git 是一个版本控制工具，它有点像时间机器，可以让你回到从前。使用 Git 管理你的项目，对项目做出修改以后，提交一下，写一条信息，说明一下为啥做出这样的修改。在未来你可以恢复到之前提交的那个点上。不管你是设计师还是开发者，都应该学会使用 Git，先从这个简单的操作手册开始吧，你将学会：</p>
+<ul><li>安装 Git</li>
+<li>初始化 Git 仓库</li>
+<li>提交修改</li>
+<li>查看状态</li>
+<li>还原</li>
+<li>创建分支</li>
+<li>合并分支</li>
+<li>在 github 上管理项目</li>
+</ul><h2><strong>安装 Git</strong></h2>
+<p>Git 是跨平台的，不管你用 Windows 还是 Mac，都可以使用 Git，打开 <a href="http://www.git-scm.com/">git-scm</a>，去下载对应版本的 Git。网站会自动检测你的操作系统，为你提供对应的 Git 。下载以后，像安装一般的软件一样，去安装 Git 。</p>
+<p>Windows 用户安装完成 Git 以后，可以打开 Git Bash 。我用的是 Mac 系统，安装好 Git 以后，可以直接使用终端工具去使用 Git 。然后简单的去配置一下 Git ：</p>
+<pre>git config --global user.name "Phoenix"
+git config --global user.email 117663444@qq.com</pre><p>上面的命令是告诉 Git ，你是谁，你的 Email 地址是什么。以后所有的操作，都会用到这个信息。只需要配置一次就可以了。</p>
+<p><img alt="QQ20140405-1" src="http://work.ninghao.net/magazine/wp-content/uploads/sites/2/2014/04/QQ20140405-1.png" width="1152" height="667" /></p>
+<h2><span style="line-height: 1.5;">基本操作</span></h2>
+<p>假设你要创建一个项目，先去新建一个目录，比如我在桌面上创建了一个叫<em> app-project</em> 的目录，可以把项目的文件都放在这个目录里面。想要让 Git 去监管这个项目目录，需要先去初始化一下：</p>
+<pre>git init</pre><p>返回：</p>
+<pre>Initialized empty Git repository in /Users/xiaoxue/Desktop/app-project/.git/</pre><p>现在， 就成功的创建了一个 repository（仓库），目前里面还没有东西，下面去查看一下它的状态：</p>
+<pre>git status</pre><p>返回：</p>
+<pre>On branch master
+ Initial commit
+ nothing to commit (create/copy files and use "git add" to track)</pre><p>提示目前没有什么东西可以<em> commit</em>（提交）的。下面，去创建一个 HTML 文件，命名为 <em>index.html</em> ，文件里输入一些基本的代码，然后把它放保存在 <em>app-project</em> 这个目录里面，然后再去查看它的状态：</p>
+<pre>git status</pre><p>这次返回：</p>
+<pre>On branch master
+ Initial commit
+ Untracked files:
+ (use "git add ..." to include in what will be committed)
+<strong> index.html</strong>
+ nothing added to commit but untracked files present (use "git add" to track)</pre><p>提示我们现在正处在<em> master</em>（主） 这个 <em>branch</em>（分支）上，然后有一个还没有跟踪的文件：<em>index.html</em>，这也是我们项目里唯一的文件，想让 Git 跟踪这个文件，需要把它添加到 Staging（工作） 区域，然后再去 <em>commit</em>（提交）一下。</p>
+<pre>git add index.html</pre><p>再去查看状态时会返回：</p>
+<pre>On branch master
+ Initial commit
+ Changes to be committed:
+ (use "git rm --cached ..." to unstage)
+ new file: index.html</pre><p>提交添加了一个新的文件 <em>index.html</em>，如果你想添加所有的文件，可以使用一个 . 像这样：</p>
+<pre>git add .</pre><p>添加好要跟踪的文件以后，最后需要再去提交一下，提交的时候，需要输入一条描述的信息：</p>
+<pre>git commit -m '第一次提交'</pre><p>返回：</p>
+<pre>[master (root-commit) 4a37046] 第一次提交
+ 1 file changed, 10 insertions(+)
+ create mode 100644 index.html</pre><p>确认一下我们的工作，可以使用 <em>log</em> 命令：</p>
+<pre>git log</pre><p>返回：</p>
+<pre>commit 4a370460f8f4bf4074a0c304ca794ed673b0b4c1
+ Author: Phoenix &lt;117663444@qq.com&gt;
+ Date: Sat Apr 5 14:09:51 2014 +0800</pre><p>再次查看状态：</p>
+<pre>On branch master
+ nothing to commit, working directory clean</pre><p>提示现在 <em>master</em> 这个分支上没啥可以提交的了。下面，我们再去在自己的项目里创建一个样式表，命名为 <em>style.css</em>，然后再把这个样式表链接到 <em>index.html</em> 里面。完成以后执行下面的命令：</p>
+<pre>git add .
+git commit -m '创建 style.css 样式表并嵌入到 index.html'</pre><p>返回：</p>
+<pre>[master 95043e6] 创建 style.css 样式表并嵌入到 index.html
+2 files changed, 1 insertion(+)
+create mode 100644 style.css</pre><p>假设你现在想还原之前的提交，可以这样：</p>
+<pre>git revert HEAD</pre><p>返回：</p>
+<pre>Revert "创建 style.css 样式表并嵌入到 index.html"
+This reverts commit 95043e6fd5451b5e38258a0d314c61c2d6affcfc.
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+# modified: index.html
+# deleted: style.css</pre><p>这会打开默认的文本编辑器，输入<em> :wq</em> 保存并退出。回到你的项目目录，查看一下，你会发现， <em>style.css</em> 不见了，再打开 <em>index.html</em> 。嵌入 <em>style.css</em> 的这行代码也不见了。</p>
+<h2>分支</h2>
+<p>前面我们创建了一个 Git 仓库，里面有一个叫 master 的分支，假设现在我们想去尝试一下新的想法，你可能并不知道这些想法是否可行，但是决定要去试一下。这时，可以去创建一个新的分支，在这个分支里你可以继续对项目去做修改，然后提交，这些提交不会影响到其它的分支，最终我们可以去合并分支。创建新的分支可以这样：</p>
+<pre>git branch phoenix
+git checkout phoenix</pre><p>返回：</p>
+<pre>Switched to branch 'phoenix'</pre><p>上面两条命令的意思是，去创建一个叫做 <em>phoenix</em> 的分支，然后切换到 <em>phoenix</em> 这个分支。上面这两行命令也可以合并成一行命令：</p>
+<pre>git checkout -b phoenix</pre><p>现在你可以去修改一下 <em>index.html</em>。比如改一下<em> index.html</em> 的页面标题，完成以后，再去提交一下：</p>
+<pre>git add index.html
+git commit -m '把网页标题修改为 phoenix'</pre><p>返回：</p>
+<pre> [phoenix b5db411] 把网页标题修改为 phoenix
+ 1 file changed, 1 insertion(+), 1 deletion(-)</pre><p>上面这个提交是在 <em>phoenix</em> 这个分支下面做的，你可以试着再切换到 <em>master</em> 分支，然后再查看一下<em> index.html</em> 这个文件。你会发现 <em>index.html</em> 没有什么变化，如果你决定要把在 <em>phoenix</em> 这个分支所做的修改合并到 <em>master</em> 分支上面，可以这样做：</p>
+<pre>git checkout master
+git merge phoenix</pre><p>先切换到 <em>master</em> 分支，然后把 <em>phoenix</em> 分支合并过来，现在，再去查看一下 <em>index.html</em> 文件，你会发现，在 <em>phoenix</em> 分支下所做的修改，在 <em>master</em> 分支上也会体现出来。</p>
+<h2>github</h2>
+<p>现在，我们所做的都是在本地电脑上进行的。使用 github 提供的服务，我们可以把项目文件推送到 github 提供的远程仓库里面，这样，你就不用担心意外删除掉在本地电脑上的项目文件了，因为你在远程的仓库里面，还有一个备份。你可以先去注册一个<a href="https://github.com/"> github </a>帐号，登录以后，去创建一个远程仓库：</p>
+<ol><li>点击页面右上角的 + 号，<em>Repository name</em> 这里，输入仓库的名称</li>
+<li><em>Description</em> 是可以选填的描述信息</li>
+<li><em>Public</em> 公开或 <em>Private</em> 私密，如果你不想让别人看到你的项目的代码，应该选择 Private。</li>
+<li>点击 <em>Create repository</em></li>
+</ol><p><img class="alignnone size-full wp-image-435" alt="QQ20140405-3" src="http://work.ninghao.net/magazine/wp-content/uploads/sites/2/2014/04/QQ20140405-3.png" width="1152" height="572" /></p>
+<p>创建完成以后，github 会给你提示，你可以在本地去创建一个新的仓库，也可以把本地上已有的仓库推送到创建的这个 github 的远程仓库里面。下面，我们把之前创建的<em> app-project</em> 这个项目推送上去：</p>
+<pre>git remote add origin https://github.com/wanghao-ninghao/app-project.git
+git push -u origin master</pre><p>上面这两行命令是，先去为项目添加一个远程的仓库，告诉 git 这个远程仓库的地址是啥，这个仓库是由 github 提供的，然后使用 <em>git push</em> ，去把 <em>master</em> 这个分支推送到这个远程的仓库里面。</p>
+<p>这会提示你输入你在 github 上的用户名还有密码：</p>
+<pre>Username for 'https://github.com': wanghao-ninghao
+Password for 'https://wanghao-ninghao@github.com':</pre><p><img class="alignnone size-full wp-image-436" alt="QQ20140405-4" src="http://work.ninghao.net/magazine/wp-content/uploads/sites/2/2014/04/QQ20140405-4.png" width="1152" height="681" /></p>
+<p>完成以后，你可以打开在 github 上的你的项目，你会发现项目里的文件已经显示出来了。在本地上，你可以继续使用 git 去提交修改，创建分支，然后想要把修改的东西推送到 github 上，可以使用命令：</p>
+<pre>git push</pre><p><img class="alignnone size-full wp-image-438" alt="QQ20140405-6" src="http://work.ninghao.net/magazine/wp-content/uploads/sites/2/2014/04/QQ20140405-6.png" width="1152" height="513" /></p>
+<h2>总结</h2>
+<p>我们应该慢慢习惯使用命令行工具，Git 就是一个命令行的工具，使用命令去告诉它应该做什么。Git 是设计师与开发者的必备工具，在未来宁皓网会推出关于 Git 的更详细的<a href="http://ninghao.net/course">视频课程</a>，没有发布之前，建议您先练习一下。可以参考<a href="http://git-scm.com/book/zh"> Pro Git </a>这本书，你可以在线免费阅读。</p>
+          <div class="field-label">标签:&nbsp;</div>
+            <a href="/tag/215" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">Git</a>            <div class="submitted"> <span rel="sioc:has_creator"><span class="username" xml:lang="" about="/user/6" typeof="sioc:UserAccount" property="foaf:name" datatype="">王皓</span></span> <span property="dc:date dc:created" content="2014-04-05T17:00:26+08:00" datatype="xsd:dateTime">星期六, 2014-04-05 17:00</span> </div>
+    <ul class="links inline"><li class="comment_forbidden first last"><span><a href="/user/login?destination=node/1379%23comment-form">登录</a> - 评论</span></li>
+</ul> 
+  </div>
+  <div id="comments" class="comment-wrapper">
+          <h2 class="title">评论</h2>
+      
+  <a id="comment-2518"></a>
+<div class="comment first odd clearfix" about="/comment/2518#comment-2518" typeof="sioc:Post sioct:Comment">          <ul class="links inline"><li class="comment_forbidden first last"><span><a href="/user/login?destination=node/1379%23comment-form">登录</a> - 评论</span></li>
+</ul> 
+  <div class="submitted"> <span rel="sioc:has_creator"><span class="username" xml:lang="" about="/user/2305" typeof="sioc:UserAccount" property="foaf:name" datatype="">大力水脚</span></span> <span property="dc:date dc:created" content="2014-04-05T19:21:32+08:00" datatype="xsd:dateTime">星期六, 2014-04-05 19:21</span> </div>
+  <div class="content">
+    <span rel="sioc:reply_of" resource="/blog/1379" class="rdf-meta"></span>            多人用GIT可以使合作变得更轻松，自已使用可以让开发思路更清晰。      </div>
+  </div>
+<!-- /.comment --> <a id="comment-2519"></a>
+<div class="comment even clearfix" about="/comment/2519#comment-2519" typeof="sioc:Post sioct:Comment">          <ul class="links inline"><li class="comment_forbidden first last"><span><a href="/user/login?destination=node/1379%23comment-form">登录</a> - 评论</span></li>
+</ul> 
+  <div class="submitted"> <span rel="sioc:has_creator"><span class="username" xml:lang="" about="/user/78" typeof="sioc:UserAccount" property="foaf:name" datatype="">谦哥</span></span> <span property="dc:date dc:created" content="2014-04-06T18:13:57+08:00" datatype="xsd:dateTime">星期日, 2014-04-06 18:13</span> </div>
+  <div class="content">
+    <span rel="sioc:reply_of" resource="/blog/1379" class="rdf-meta"></span>            请问 Joomla3.x 怎么实现调查投票啊  之前自带的插件没有了 
+或者皓哥有什么推荐的类似插件啊      </div>
+  </div>
+<!-- /.comment --> 
+<div class="indented"><a id="comment-2703"></a>
+<div class="comment odd clearfix" about="/comment/2703#comment-2703" typeof="sioc:Post sioct:Comment">          <ul class="links inline"><li class="comment_forbidden first last"><span><a href="/user/login?destination=node/1379%23comment-form">登录</a> - 评论</span></li>
+</ul> 
+  <div class="submitted"> <span rel="sioc:has_creator"><span class="username" xml:lang="" about="/user/8932" typeof="sioc:UserAccount" property="foaf:name" datatype="">徐昊</span></span> <span property="dc:date dc:created" content="2014-04-27T11:03:55+08:00" datatype="xsd:dateTime">星期日, 2014-04-27 11:03</span> </div>
+  <div class="content">
+    <span rel="sioc:reply_of" resource="/blog/1379" class="rdf-meta"></span><span rel="sioc:reply_of" resource="/comment/2519#comment-2519" class="rdf-meta"></span>            +1      </div>
+  </div>
+<!-- /.comment --> </div><a id="comment-2527"></a>
+<div class="comment even clearfix" about="/comment/2527#comment-2527" typeof="sioc:Post sioct:Comment">          <ul class="links inline"><li class="comment_forbidden first last"><span><a href="/user/login?destination=node/1379%23comment-form">登录</a> - 评论</span></li>
+</ul> 
+  <div class="submitted"> <span rel="sioc:has_creator"><span class="username" xml:lang="" about="/user/9905" typeof="sioc:UserAccount" property="foaf:name" datatype="">sununiy</span></span> <span property="dc:date dc:created" content="2014-04-07T22:18:19+08:00" datatype="xsd:dateTime">星期一, 2014-04-07 22:18</span> </div>
+  <div class="content">
+    <span rel="sioc:reply_of" resource="/blog/1379" class="rdf-meta"></span>            请问如何在Drupal中实现针对某个用户限制他的网址的访问啊？比如只能让abc用户访问http://xxx.com/123/?      </div>
+  </div>
+<!-- /.comment --> <a id="comment-2536"></a>
+<div class="comment odd clearfix" about="/comment/2536#comment-2536" typeof="sioc:Post sioct:Comment">          <ul class="links inline"><li class="comment_forbidden first last"><span><a href="/user/login?destination=node/1379%23comment-form">登录</a> - 评论</span></li>
+</ul> 
+  <div class="submitted"> <span rel="sioc:has_creator"><span class="username" xml:lang="" about="/user/10359" typeof="sioc:UserAccount" property="foaf:name" datatype="">edgar</span></span> <span property="dc:date dc:created" content="2014-04-08T23:14:43+08:00" datatype="xsd:dateTime">星期二, 2014-04-08 23:14</span> </div>
+  <div class="content">
+    <span rel="sioc:reply_of" resource="/blog/1379" class="rdf-meta"></span>            github 提供的远程仓库如果想设成private是不是一定得收钱啊？      </div>
+  </div>
+<!-- /.comment --> 
+<div class="indented"><a id="comment-2545"></a>
+<div class="comment comment-by-node-author even clearfix" about="/comment/2545#comment-2545" typeof="sioc:Post sioct:Comment">          <ul class="links inline"><li class="comment_forbidden first last"><span><a href="/user/login?destination=node/1379%23comment-form">登录</a> - 评论/span></li>
+</ul> 
+  <div class="submitted"> <span rel="sioc:has_creator"><span class="username" xml:lang="" about="/user/6" typeof="sioc:UserAccount" property="foaf:name" datatype="">王皓</span></span> <span property="dc:date dc:created" content="2014-04-09T07:33:36+08:00" datatype="xsd:dateTime">星期三, 2014-04-09 07:33</span> </div>
+  <div class="content">
+    <span rel="sioc:reply_of" resource="/blog/1379" class="rdf-meta"></span><span rel="sioc:reply_of" resource="/comment/2536#comment-2536" class="rdf-meta"></span>            是啊。得收费。你也可以在自己的服务器上搭建一个。      </div>
+  </div>
+<!-- /.comment --> </div><a id="comment-2849"></a>
+<div class="comment odd clearfix" about="/comment/2849#comment-2849" typeof="sioc:Post sioct:Comment">          <ul class="links inline"><li class="comment_forbidden first last"><span><a href="/user/login?destination=node/1379%23comment-form">登录</a> - 评论</span></li>
+</ul> 
+  <div class="submitted"> <span rel="sioc:has_creator"><span class="username" xml:lang="" about="/user/11626" typeof="sioc:UserAccount" property="foaf:name" datatype="">腿e先生</span></span> <span property="dc:date dc:created" content="2014-05-26T14:58:46+08:00" datatype="xsd:dateTime">星期一, 2014-05-26 14:58</span> </div>
+  <div class="content">
+    <span rel="sioc:reply_of" resource="/blog/1379" class="rdf-meta"></span>            俺比较懒，直接用的lnmp.org上面的军哥一键配置包，新手可以试试看，阿里云现在出了镜像也很方便配置环境的      </div>
+  </div>
+<!-- /.comment --> 
+<div class="indented"><a id="comment-2850"></a>
+<div class="comment last even clearfix" about="/comment/2850#comment-2850" typeof="sioc:Post sioct:Comment">          <ul class="links inline"><li class="comment_forbidden first last"><span><a href="/user/login?destination=node/1379%23comment-form">登录</a> - 评论</span></li>
+</ul> 
+  <div class="submitted"> <span rel="sioc:has_creator"><span class="username" xml:lang="" about="/user/11626" typeof="sioc:UserAccount" property="foaf:name" datatype="">腿e先生</span></span> <span property="dc:date dc:created" content="2014-05-26T14:59:18+08:00" datatype="xsd:dateTime">星期一, 2014-05-26 14:59</span> </div>
+  <div class="content">
+    <span rel="sioc:reply_of" resource="/blog/1379" class="rdf-meta"></span><span rel="sioc:reply_of" resource="/comment/2849#comment-2849" class="rdf-meta"></span>            发错了，http://ninghao.net/blog/1368 准备回复这个文章的。      </div>
+  </div>
+<!-- /.comment --> </div>
+  </div>
+ </div>
+<!-- /.node --> 
+</section></div>
+         </div>
+          </div>
+  </div>
+</div>
+<div id="bottom">
+  <div class="container">
+    <div class="row">    <section class="span6 first clearfix">
+          <h2> <span>你能学到的软件与技术</span></h2>
+<ul class="category-icon thumbnails clearfix"><li class="span1"> <a href="http://ninghao.net/course/tag/drupal" title="Drupal相关的课程"><img alt="Drupal相关的课程" src="http://ninghao.net/files/badge/drupal.png" /></a><br /><h3> <a href="http://ninghao.net/course/tag/drupal" title="Drupal相关的课程">Drupal</a></h3>
+</li>
+<li class="span1"><a href="http://ninghao.net/course/tag/joomla" title="Joomla相关的课程"><img alt="Joomla相关的课程" src="http://ninghao.net/files/badge/joomla.png" /></a><br /><h3> <a href="http://ninghao.net/course/tag/joomla" title="Joomla相关的课程">Joomla</a></h3>
+</li>
+<li class="span1"> <a href="http://ninghao.net/course/tag/wordpress" title="WordPress相关的课程"><img alt="WordPress相关的课程" src="http://ninghao.net/files/badge/wordpress.png" /></a><br /><h3> <a href="http://ninghao.net/course/tag/wordpress" title="WordPress相关的课程">WordPress</a></h3>
+</li>
+<li class="span1"> <a href="http://ninghao.net/course/tag/css" title="CSS相关的课程"><img alt="CSS相关的课程" src="http://ninghao.net/files/badge/css.png" /></a><br /><h3> <a href="http://ninghao.net/course/tag/css" title="CSS相关的课程">CSS</a></h3>
+</li>
+<li class="span1"> <a href="http://ninghao.net/course/tag/photoshop" title="Photoshop相关的课程"><img alt="Photoshop相关的课程" src="http://ninghao.net/files/badge/ps.png" /></a><br /><h3> <a href="http://ninghao.net/course/tag/photoshop" title="Photoshop相关的课程">Photoshop</a></h3>
+</li>
+</ul></section><section class="span2 even clearfix">
+        <h2><span>社会化网络</span></h2>
+        <ul class="menu nav"><li class="first leaf"><a href="http://u.youku.com/user_show/uid_%E6%88%91%E4%BB%AC%E6%98%AF%E5%AE%81%E7%9A%93" title="查看宁皓网的优酷页面">优酷</a></li>
+<li class="leaf"><a href="http://t.qq.com/weareninghao" title="查看宁皓网的腾讯微博">腾讯微博</a></li>
+<li class="leaf"><a href="http://weibo.com/weareninghao" title="查看宁皓网的新浪微博">新浪微博</a></li>
+<li class="leaf"><a href="http://ninghao.net/free" title="宁皓网免费的视频">免费视频</a></li>
+<li class="last leaf"><a href="/blog/938" title="">240746680（群）</a></li>
+</ul></section><section class="span2 odd clearfix">
+        <h2><span>关于</span></h2>
+        <ul class="menu nav"><li class="first leaf"><a href="/about" title="了解宁皓网">关于</a></li>
+<li class="leaf"><a href="http://ninghao.net/blog/1121" title="讲个故事">故事</a></li>
+<li class="leaf"><a href="/help" title="与宁皓网取得联系">联系</a></li>
+<li class="leaf"><a href="/cart" title="查看购物车里的东西">购物车</a></li>
+<li class="last leaf"><a href="http://ninghao.net/blog/843" title="查看学习计划">学习计划</a></li>
+</ul></section><section class="span2 last clearfix">
+        <h2><span>微信</span></h2>
+        <p><img src="http://ninghao.net/files/images/blog/3040.jpg" alt="扫描微信二维码关注宁皓网" title="扫描微信二维码关注宁皓网" style="width:85%;margin-left:10px" /></p>
+</section> </div>
+  </div>
+</div>
+<footer id="footer">
+  <div class="container">     <section class=" first clearfix">
+          <p class="pull-right">QQ：53166188 , 手机：159 6577 9823</p>
+<p>© <a href="http://ninghao.net" rel="nofollow">济南鑫铎网络技术有限公司</a><span>|</span><a href="http://ninghao.net/privacy" rel="nofollow">隐私条款</a><span>|</span><a href="http://ninghao.net/terms" rel="nofollow">服务条款</a><span>|</span><a href="http://www.miibeian.gov.cn/" rel="nofollow">浙ICP备12003619号-1</a><span></span></p>
+</section><section class=" last clearfix">
+          <script type="text/javascript">
+<!--//--><![CDATA[// ><!--
+
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Feb4fe76a4b96b86a50d2cf677dd8555f' type='text/javascript'%3E%3C/script%3E"));
+
+//--><!]]>
+</script></section> </div>
+</footer>
+<script type="text/javascript" src="/sites/all/themes/ninghao/js/ninghao.js"></script>
+  </body>
+</html>
